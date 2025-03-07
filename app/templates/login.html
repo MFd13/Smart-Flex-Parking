@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block header %}
+    <h1>Ponga su cuenta aca</h1>
+{% endblock %}
+
+{% block content %}
+<div  class="sign-div">
+    <form action="personas/show" method="get">
+        <div class="form-element">
+            Email: <input type="email" name="email" id="email" placeholder="Email@gmail.com"> 
+        </div>
+        <div class="form-element">
+            Contraseña: <input type="password" name="pswd" id="pswd" placeholder="Contraseña">
+        </div>
+    </form>
+    <button>Iniciar Sesión</button>
+</div>
+{% endblock %}
