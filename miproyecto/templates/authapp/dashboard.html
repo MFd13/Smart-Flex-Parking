@@ -1,0 +1,11 @@
+<!-- admin_dashboard.html -->
+<h1>Dashboard Admin</h1>
+
+<h2>Usuarios</h2>
+<ul>
+    {% for user in users %}
+        <li>{{ user.matricula }} - {{ user.type }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'add_user' %}">Agregar nuevo usuario</a>

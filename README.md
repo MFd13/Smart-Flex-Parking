@@ -5,8 +5,8 @@ Proyecto integrador para facilitar el proceso de registros de asistencia del per
 # Crea un nuevo entorno virtual nombrado "venv"
 python -m venv venv
 
-# Activa el entorno virtual
-venv\Scripts\activate  
+venv\Scripts\activate # Activa el entorno virtual
+ 
 
 # Instalar dependencias
 pip install -r requirements.txt  

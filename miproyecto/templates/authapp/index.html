@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Website</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fuente de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome para íconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS personalizado -->
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000; /* Fondo oscuro para un estilo tecnológico */
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow: hidden; /* Evita el desbordamiento de la animación */
+        }
+
+        /* Animación de fondo tecnológica */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            z-index: 1;
+        }
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background: rgba(106, 17, 203, 0.7); /* Fondo morado semi-transparente */
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #2575fc !important; /* Cambio de color al pasar el mouse */
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        /* Sección de contenido */
+        .content-section {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #ddd;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .content-section .btn-custom {
+            margin-top: 20px;
+            animation: fadeIn 4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semi-transparente */
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Efectos adicionales */
+        .navbar-brand:hover {
+            color: #2575fc; /* Cambio de color al pasar el mouse */
+        }
+
+        /* Estilo para el botón con ícono */
+        .btn-with-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Estilo para íconos en la sección de contenido */
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .icon-container i {
+            font-size: 2rem;
+            color: #2575fc;
+            transition: color 0.3s ease;
+        }
+
+        .icon-container i:hover {
+            color: #6a11cb;
+        }
+
+        /* Estilo para la tabla de usuarios */
+        table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #2575fc;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animación de fondo tecnológica -->
+    <div class="animated-background"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Parking Website</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+
+                    <!-- 🔹 Si el usuario está autenticado, mostrar matrícula y botón de logout -->
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link">Bienvenido, {{ user.matricula }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-custom" href="{% url 'logout' %}">Cerrar Sesión</a>
+                        </li>
+
+                        <!-- Si es admin, muestra los usuarios -->
+                        {% if user.type == 'Admin' %}
+                            <li class="nav-item">
+                                <a class="nav-link btn-custom" href="{% url 'add_user' %}">Agregar Usuario</a>
+                            </li>
+                        {% endif %}
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link btn-custom btn-with-icon" href="{% url 'login' %}">
+                                <i class="fas fa-sign-in-alt"></i> Sign In
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección de contenido -->
+    <div class="content-section">
+        <div class="container">
+            <h2>Bienvenido a Parking Website</h2>
+            <p>Encuentra el mejor lugar para estacionar tu vehículo de manera rápida y segura.</p>
+            <a href="#" class="btn-custom">Explorar Servicios</a>
+
+            <!-- Tabla de usuarios (solo visible para Admin) -->
+            {% if user.type == 'Admin' %}
+                <h3>Lista de Usuarios</h3>
+                <table>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.matricula }}</td>
+                            <td>{{ user.type }}</td>
+                            <td>
+                                <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+            <!-- Contenedor de íconos -->
+            <div class="icon-container">
+                <i class="fas fa-car"></i>
+                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-clock"></i>
+                <i class="fas fa-shield-alt"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Parking Website. All rights reserved.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
