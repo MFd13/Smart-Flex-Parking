@@ -13,11 +13,12 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, matricula, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('type', 'Admin')  # Autoasigna tipo Admin
+        extra_fields.setdefault('type', 'Admin')
         return self.create_user(matricula, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     matricula = models.CharField(max_length=15, unique=True)
+    rfid = models.CharField(max_length=100, blank=True, null=True)  # ✅ Campo RFID agregado
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     type = models.CharField(max_length=10, default='Normal')  # Admin o Normal

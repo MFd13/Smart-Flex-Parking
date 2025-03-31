@@ -1,267 +1,214 @@
+<!-- templates/authapp/user_profile.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil</title>
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6a11cb;
-            --secondary-color: #2575fc;
-            --accent-color: #ff6f61;
-            --light-color: #ffffff;
-            --dark-color: #121212;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary-color: #2575fc;
+            --secondary-color: #6a11cb;
         }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: var(--light-color);
-            min-height: 100vh;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        .profile-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
         .profile-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-        
-        .profile-header h2 {
-            font-weight: 700;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--light-color), #e0e0e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .profile-header::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-        
-        .profile-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 3rem 0;
             margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        
+        .profile-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
         .profile-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
-        
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .history-item {
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
-        
+        .history-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+        .badge-custom {
+            padding: 8px 12px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        .btn-logout {
+            transition: all 0.3s;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .empty-state {
+            padding: 40px 0;
+            text-align: center;
+            color: #6c757d;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #dee2e6;
+        }
         .info-item {
             display: flex;
             align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
             border-radius: 10px;
-            transition: all 0.3s ease;
         }
-        
-        .info-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
-        
         .info-icon {
             width: 50px;
             height: 50px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            margin-right: 1.5rem;
+            margin-right: 15px;
             font-size: 1.2rem;
-            color: white;
-            flex-shrink: 0;
         }
-        
         .info-content h3 {
             font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: #6c757d;
+            margin-bottom: 5px;
         }
-        
         .info-content p {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.1rem;
             margin-bottom: 0;
-        }
-        
-        .btn-logout {
-            background: linear-gradient(135deg, #ff6f61, #ff2d55);
-            border: none;
-            border-radius: 50px;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 45, 85, 0.3);
-            width: 100%;
-            max-width: 250px;
-            margin: 0 auto;
-        }
-        
-        .btn-logout:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 45, 85, 0.4);
-            color: white;
-        }
-        
-        .btn-logout i {
-            margin-right: 8px;
-        }
-        
-        .profile-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            margin: 0 auto 1.5rem;
-            display: block;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 5px;
-        }
-        
-        .profile-pic-initials {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-        }
-        
-        @media (max-width: 768px) {
-            .profile-header h2 {
-                font-size: 2rem;
-            }
-            
-            .info-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .info-icon {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
         }
     </style>
 </head>
 <body>
-
-<div class="container profile-container">
     <div class="profile-header">
-        <div class="profile-pic">
-            <div class="profile-pic-initials">
-                {{ user.matricula|first|upper }}
-            </div>
-        </div>
-        <h2>Mi Perfil</h2>
-    </div>
-    
-    <div class="profile-card">
-        <div class="profile-info">
-            <div class="info-item">
-                <div class="info-icon">
-                    <i class="fas fa-id-card"></i>
-                </div>
-                <div class="info-content">
-                    <h3>Matrícula</h3>
-                    <p>{{ user.matricula }}</p>
-                </div>
-            </div>
-            
-            <div class="info-item">
-                <div class="info-icon">
-                    <i class="fas fa-user-tag"></i>
-                </div>
-                <div class="info-content">
-                    <h3>Tipo de Usuario</h3>
-                    <p>{{ user.type }}</p>
-                </div>
-            </div>
-            
-            <!-- Puedes agregar más campos de información aquí -->
-            <!--
-            <div class="info-item">
-                <div class="info-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="info-content">
-                    <h3>Correo Electrónico</h3>
-                    <p>usuario@ejemplo.com</p>
-                </div>
-            </div>
-            -->
+        <div class="container text-center">
+            <img src="https://ui-avatars.com/api/?name={{ user.matricula }}&background=random&color=fff&size=150" 
+                 class="avatar rounded-circle mb-3" 
+                 alt="Avatar">
+            <h1 class="mb-2">Mi Perfil</h1>
+            <p class="lead">Bienvenido a tu espacio personal</p>
         </div>
     </div>
-    
-    <div class="profile-actions">
-        <a href="{% url 'logout' %}" class="btn btn-logout">
-            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-        </a>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="profile-card">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <h4><i class="fas fa-id-card text-primary me-2"></i>Información Personal</h4>
+                            <hr>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-1">Matrícula</h6>
+                                <p class="h5">{{ user.matricula }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-1">Tipo de usuario</h6>
+                                <span class="badge {% if user.type == 'Admin' %}bg-danger{% else %}bg-success{% endif %} badge-custom">
+                                    <i class="fas {% if user.type == 'Admin' %}fa-crown{% else %}fa-user{% endif %} me-1"></i>
+                                    {{ user.type }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <h4><i class="fas fa-key text-primary me-2"></i>Accesos</h4>
+                            <hr>
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h3>RFID</h3>
+                                    {% if user.rfid %}
+                                        <p>{{ user.rfid }}</p>
+                                    {% else %}
+                                        <p><em>No asignado</em></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h4 class="mb-4"><i class="fas fa-history text-primary me-2"></i>Historial de Accesos</h4>
+                    
+                    {% if registros %}
+                        <div class="timeline">
+                            {% for registro in registros %}
+                                <div class="history-item">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <i class="fas fa-sign-in-alt text-success me-2"></i>
+                                            <strong>Entrada:</strong>
+                                            <span class="text-muted ms-2">{{ registro.fecha_entrada }}</span>
+                                        </div>
+                                        {% if registro.fecha_salida %}
+                                            <span class="badge bg-success rounded-pill">
+                                                <i class="fas fa-check-circle me-1"></i> Completo
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-warning text-dark rounded-pill">
+                                                <i class="fas fa-clock me-1"></i> Pendiente
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                    {% if registro.fecha_salida %}
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-sign-out-alt text-danger me-2"></i>
+                                            <strong>Salida:</strong>
+                                            <span class="text-muted ms-2">{{ registro.fecha_salida }}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h5 class="mb-2">No hay registros disponibles</h5>
+                            <p class="text-muted">Aún no tienes registros de acceso en el sistema.</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
