@@ -330,42 +330,19 @@
 
 <div class="admin-container">
     <div class="admin-header">
-        <h1 class="admin-title">Panel de Administración</h1>
-        <a href="{% url 'registros' %}" class="btn btn-logout">
-            <i class="fas fa-sign-out-alt"></i> Registros
+        <h1 class="admin-title">Panel de Registros</h1>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-logout">
+            <i class="fas fa-sign-out-alt"></i> Panel de Administración
         </a>
         <a href="{% url 'logout' %}" class="btn btn-logout">
             <i class="fas fa-sign-out-alt"></i> Cerrar sesión
         </a>
     </div>
     
-    <div class="welcome-message">
-        <i class="fas fa-user-shield"></i>
-        <span>Bienvenido, <strong>{{ user.matricula }}</strong> (Administrador)</span>
-    </div>
-    
-    <div class="stats-card">
-        <div class="stat-item">
-            <div class="stat-value">{{ users|length }}</div>
-            <div class="stat-label">Usuarios Totales</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">{{ users|length }}</div>
-            <div class="stat-label">Usuarios Activos</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">0</div>
-            <div class="stat-label">Nuevos Hoy</div>
-        </div>
-    </div>
-    
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span><i class="fas fa-users me-2"></i> Lista de Usuarios</span>
+            <span><i class="fas fa-users me-2"></i> Lista de Registros</span>
             <div>
-                <a href="{% url 'add_user' %}" class="btn btn-add btn-sm">
-                    <i class="fas fa-user-plus me-1"></i> Agregar Usuario
-                </a>
                 <button class="btn btn-sm btn-light">
                     <i class="fas fa-sync-alt me-1"></i> Actualizar
                 </button>
@@ -376,8 +353,9 @@
                 <thead>
                     <tr>
                         <th>Matrícula</th>
-                        <th>Tipo</th>
-                        <th>Acciones</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Hora de Registro</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -422,12 +400,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-

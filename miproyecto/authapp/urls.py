@@ -3,7 +3,7 @@ from django.urls import path
 from authapp.views import (
     login_view, logout_view, admin_dashboard,
     user_profile, home, delete_user, user_detail,
-    add_user
+    add_user,registros
 )
 
 urlpatterns = [
@@ -15,7 +15,8 @@ urlpatterns = [
     path('user_profile/', user_profile, name='user_profile'),
     path('delete_user/<int:user_id>/', delete_user, name='delete_user'),
     path('user_detail/<int:user_id>/', user_detail, name='user_detail'),
-    path('add_user/', add_user, name='add_user'),  # ✅ Nueva ruta
+    path('add_user/', add_user, name='add_user'),
+    path('registros/', registros, name='registros')
 ]
 
 

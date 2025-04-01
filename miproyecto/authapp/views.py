@@ -101,6 +101,10 @@ def add_user(request):
 
     return render(request, 'authapp/add_user.html')
 
+@login_required
+def registros(request):
+    return render(request, 'authapp/registros.html')
+
 
 
 
