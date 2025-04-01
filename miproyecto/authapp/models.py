@@ -5,6 +5,8 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, matricula, password=None, **extra_fields):
         if not matricula:
             raise ValueError("El usuario debe tener una matrícula")
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
         user = self.model(matricula=matricula, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -18,10 +20,12 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     matricula = models.CharField(max_length=15, unique=True)
-    rfid = models.CharField(max_length=100, blank=True, null=True)  # ✅ Campo RFID agregado
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    type = models.CharField(max_length=10, default='Normal')  # Admin o Normal
+    type = models.CharField(max_length=10, default='Normal')
+
+    # 🔥 Esto evita que Django intente usar `username`
+    username = None
 
     objects = CustomUserManager()
 

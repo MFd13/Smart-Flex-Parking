@@ -1,144 +1,306 @@
-<!-- templates/authapp/user_detail.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil del Usuario | Sistema de Control</title>
-    <!-- Bootstrap 5 CSS -->
+    <title>Perfil del Usuario</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #1cc88a;
+            --danger-color: #e74a3b;
+            --light-bg: #f8f9fc;
+            --card-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e6f0 100%);
+            min-height: 100vh;
+            padding-top: 2rem;
+        }
+        
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .profile-header {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
         }
-        .profile-icon {
+        
+        .profile-header h2 {
+            font-weight: 700;
             font-size: 2.5rem;
-            color: #0d6efd;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .registro-item {
-            border-left: 4px solid #0d6efd;
-            padding-left: 15px;
-            margin-bottom: 15px;
+        
+        .profile-header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
         }
-        .registro-item:hover {
-            background-color: #f8f9fa;
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .info-item:hover {
+            background: rgba(78, 115, 223, 0.05);
             transform: translateX(5px);
         }
-        .badge-admin {
-            background-color: #dc3545;
+        
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
+            color: white;
+            flex-shrink: 0;
         }
-        .badge-normal {
-            background-color: #198754;
+        
+        .info-content h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: rgba(0, 0, 0, 0.6);
         }
-        .card-registros {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        
+        .info-content p {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0;
         }
+        
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto 1.5rem;
+            display: block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 5px;
+        }
+        
+        .profile-pic-initials {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
         .btn-back {
+            background: white;
+            border: 1px solid #d1d3e2;
+            border-radius: 50px;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            color: #5a5c69;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-back:hover {
+            background: #f8f9fc;
+            border-color: #b7b9cc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .btn-back i {
+            margin-right: 8px;
+        }
+        
+        .update-form {
+            background: rgba(248, 249, 252, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #d1d3e2;
             transition: all 0.3s ease;
         }
-        .btn-back:hover {
-            transform: translateX(-3px);
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+        }
+        
+        .btn-update {
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-update:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header h2 {
+                font-size: 2rem;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .info-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .profile-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
-<body class="bg-light">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <!-- Botón de volver -->
-                <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-primary btn-back mb-4">
-                    <i class="fas fa-arrow-left me-2"></i>Volver al panel
-                </a>
-                
-                <!-- Encabezado del perfil -->
-                <div class="profile-header d-flex align-items-center">
-                    <div class="me-4">
-                        <i class="fas fa-user-circle profile-icon"></i>
-                    </div>
-                    <div>
-                        <h1 class="h3 mb-1">Perfil de {{ user.matricula }}</h1>
-                        <div class="d-flex align-items-center">
-                            <span class="badge {% if user.type == 'Admin' %}badge-admin{% else %}badge-normal{% endif %} rounded-pill me-2">
-                                {{ user.type }}
-                            </span>
-                            <span class="text-muted">
-                                <i class="fas fa-id-card me-1"></i> RFID: {{ user.rfid|default:"No asignado" }}
-                            </span>
-                        </div>
-                    </div>
+<body>
+
+<div class="container profile-container">
+    <div class="profile-header">
+        <div class="profile-pic">
+            <div class="profile-pic-initials">
+                {{ user.matricula|first|upper }}
+            </div>
+        </div>
+        <h2>Perfil de Usuario</h2>
+    </div>
+    
+    <div class="profile-card">
+        <div class="profile-info">
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-id-card"></i>
                 </div>
-                
-                <!-- Formulario de actualización -->
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <i class="fas fa-cog me-2"></i>Configuración de usuario
-                    </div>
-                    <div class="card-body">
-                        <form method="POST">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label class="form-label">Cambiar tipo de usuario</label>
-                                <select name="type" class="form-select">
-                                    <option value="Normal" {% if user.type == "Normal" %}selected{% endif %}>Usuario Normal</option>
-                                    <option value="Admin" {% if user.type == "Admin" %}selected{% endif %}>Administrador</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save me-2"></i>Actualizar
-                            </button>
-                        </form>
-                    </div>
+                <div class="info-content">
+                    <h3>Matrícula</h3>
+                    <p>{{ user.matricula }}</p>
                 </div>
-                
-                <!-- Historial de registros -->
-                <div class="card card-registros">
-                    <div class="card-header bg-primary text-white">
-                        <i class="fas fa-history me-2"></i>Historial de registros
-                    </div>
-                    <div class="card-body">
-                        {% if registros %}
-                            <div class="list-group list-group-flush">
-                                {% for registro in registros %}
-                                    <div class="list-group-item registro-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">
-                                                <i class="fas fa-sign-in-alt text-success me-2"></i>Entrada
-                                            </h5>
-                                            <small class="text-muted">{{ registro.fecha_entrada|date:"d M Y H:i" }}</small>
-                                        </div>
-                                        <p class="mb-1">
-                                            {% if registro.fecha_salida %}
-                                                <i class="fas fa-sign-out-alt text-danger me-2"></i>Salida: {{ registro.fecha_salida|date:"d M Y H:i" }}
-                                            {% else %}
-                                                <span class="badge bg-warning text-dark">
-                                                    <i class="fas fa-clock me-1"></i>Salida pendiente
-                                                </span>
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <div class="text-center py-4">
-                                <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
-                                <p class="text-muted">No hay registros para este usuario.</p>
-                            </div>
-                        {% endif %}
-                    </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">
+                    <i class="fas fa-user-tag"></i>
                 </div>
+                <div class="info-content">
+                    <h3>Tipo de Usuario</h3>
+                    <p>{{ user.type }}</p>
+                </div>
+            </div>
+            
+            <!-- Formulario de actualización -->
+            <div class="update-form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="type" class="form-label">
+                            <i class="fas fa-user-cog me-2"></i>Cambiar tipo de usuario:
+                        </label>
+                        <select name="type" id="type" class="form-control">
+                            <option value="Normal" {% if user.type == 'Normal' %}selected{% endif %}>Normal</option>
+                            <option value="Admin" {% if user.type == 'Admin' %}selected{% endif %}>Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-update w-100">
+                        <i class="fas fa-sync-alt me-2"></i> Actualizar Tipo
+                    </button>
+                </form>
             </div>
         </div>
     </div>
+    
+    <div class="text-center">
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-back">
+            <i class="fas fa-arrow-left"></i> Volver al panel
+        </a>
+    </div>
+</div>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+
+
+

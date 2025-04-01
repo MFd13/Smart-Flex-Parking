@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,20 +17,14 @@
     <style>
         :root {
             --primary-color: #4e73df;
-            --primary-dark: #224abe;
             --secondary-color: #1cc88a;
-            --secondary-dark: #17a673;
             --danger-color: #e74a3b;
-            --danger-dark: #c23a2d;
             --warning-color: #f6c23e;
-            --warning-dark: #d4a93a;
             --info-color: #17a2b8;
-            --info-dark: #138496;
             --dark-color: #5a5c69;
             --light-color: #f8f9fc;
             --sidebar-bg: #2c3e50;
             --card-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-            --card-hover-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
         }
         
         body {
@@ -41,12 +35,11 @@
         }
         
         .admin-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
         
-        /* Header Styles */
         .admin-header {
             display: flex;
             justify-content: space-between;
@@ -54,248 +47,126 @@
             margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        
-        .admin-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
         }
         
         .admin-title {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--dark-color);
             margin: 0;
             position: relative;
-            padding-left: 2rem;
-            font-size: 1.8rem;
+            padding-left: 1.5rem;
         }
         
         .admin-title::before {
-            content: '\f2be';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+            content: '';
             position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--primary-color);
-            font-size: 1.5rem;
+            height: 80%;
+            width: 5px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
         }
         
-        /* Welcome Message */
         .welcome-message {
             font-size: 1.1rem;
             color: var(--dark-color);
             margin-bottom: 2rem;
             background-color: white;
-            padding: 1.2rem 1.8rem;
-            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
             box-shadow: var(--card-shadow);
             display: inline-flex;
             align-items: center;
-            border-left: 5px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        
-        .welcome-message:hover {
-            transform: translateX(5px);
-            box-shadow: var(--card-hover-shadow);
         }
         
         .welcome-message i {
             color: var(--primary-color);
-            margin-right: 12px;
-            font-size: 1.5rem;
+            margin-right: 10px;
+            font-size: 1.3rem;
         }
         
-        /* Cards */
         .card {
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: var(--card-shadow);
             overflow: hidden;
             margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color: white;
         }
         
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--card-hover-shadow);
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
         }
         
         .card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
             color: white;
             font-weight: 600;
             padding: 1.25rem 1.5rem;
             border-bottom: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         
-        .card-header i {
-            margin-right: 10px;
-        }
-        
-        /* Stats Cards */
-        .stats-card {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .stat-item {
-            background-color: white;
-            border-radius: 12px;
-            padding: 1.8rem;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-left: 5px solid var(--primary-color);
-        }
-        
-        .stat-item:nth-child(2) {
-            border-left-color: var(--secondary-color);
-        }
-        
-        .stat-item:nth-child(3) {
-            border-left-color: var(--info-color);
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--card-hover-shadow);
-        }
-        
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--dark-color);
-        }
-        
-        .stat-item:nth-child(1) .stat-value {
-            color: var(--primary-color);
-        }
-        
-        .stat-item:nth-child(2) .stat-value {
-            color: var(--secondary-color);
-        }
-        
-        .stat-item:nth-child(3) .stat-value {
-            color: var(--info-color);
-        }
-        
-        .stat-label {
-            font-size: 0.95rem;
-            color: var(--dark-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-        
-        .stat-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2.5rem;
-            opacity: 0.2;
-            color: var(--dark-color);
-        }
-        
-        /* Table Styles */
         .table-responsive {
-            border-radius: 0 0 12px 12px;
+            border-radius: 0 0 10px 10px;
             overflow: hidden;
         }
         
         .table {
             margin-bottom: 0;
-            border-collapse: separate;
-            border-spacing: 0;
         }
         
         .table thead th {
             background-color: #f8f9fc;
             color: var(--dark-color);
-            font-weight: 700;
+            font-weight: 600;
             border-bottom: 2px solid #e3e6f0;
-            padding: 1.2rem 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            padding: 1rem 1.5rem;
         }
         
         .table tbody td {
-            padding: 1.2rem 1.5rem;
+            padding: 1rem 1.5rem;
             vertical-align: middle;
             border-top: 1px solid #e3e6f0;
-            transition: all 0.2s ease;
         }
         
-        .table tbody tr:hover td {
-            background-color: rgba(78, 115, 223, 0.05);
-            transform: scale(1.01);
+        .table tbody tr:hover {
+            background-color: #f8f9fc;
         }
         
-        /* Button Styles */
         .btn-logout {
             background-color: white;
             color: var(--dark-color);
             border: 1px solid #d1d3e2;
             border-radius: 50px;
-            padding: 0.6rem 1.8rem;
+            padding: 0.5rem 1.5rem;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
         }
         
         .btn-logout:hover {
             background-color: #f8f9fc;
             color: var(--danger-color);
             border-color: var(--danger-color);
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
         }
         
         .btn-logout i {
             margin-right: 8px;
-            transition: transform 0.3s ease;
-        }
-        
-        .btn-logout:hover i {
-            transform: translateX(-3px);
         }
         
         .btn-action {
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            padding: 0.35rem 1rem;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 100px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-action i {
-            margin-right: 6px;
         }
         
         .btn-delete {
@@ -305,80 +176,60 @@
         }
         
         .btn-delete:hover {
-            background-color: var(--danger-dark);
+            background-color: #c23a2d;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1.5rem rgba(231, 74, 59, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(231, 74, 59, 0.2);
         }
         
         .btn-edit {
             background-color: var(--warning-color);
             color: #000;
             border: none;
+            margin-right: 0.5rem;
         }
         
         .btn-edit:hover {
-            background-color: var(--warning-dark);
+            background-color: #d4a93a;
             color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1.5rem rgba(246, 194, 62, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(246, 194, 62, 0.2);
         }
         
         .btn-profile {
             background-color: var(--info-color);
             color: white;
             border: none;
+            margin-right: 0.5rem;
         }
         
         .btn-profile:hover {
-            background-color: var(--info-dark);
+            background-color: #138496;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1.5rem rgba(23, 162, 184, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(23, 162, 184, 0.2);
         }
         
         .btn-add {
             background-color: var(--secondary-color);
             color: white;
             border: none;
-            padding: 0.6rem 1.5rem;
+            margin-right: 0.5rem;
         }
         
         .btn-add:hover {
-            background-color: var(--secondary-dark);
+            background-color: #17a673;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 0.5rem 1.5rem rgba(28, 200, 138, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(28, 200, 138, 0.2);
         }
         
-        .btn-refresh {
-            background-color: #f8f9fc;
-            color: var(--dark-color);
-            border: 1px solid #d1d3e2;
-        }
-        
-        .btn-refresh:hover {
-            background-color: white;
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        /* Badges */
         .badge-type {
-            padding: 0.5rem 1rem;
+            padding: 0.35rem 0.75rem;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .badge-type i {
-            margin-right: 6px;
-            font-size: 0.9rem;
         }
         
         .badge-admin {
@@ -396,81 +247,83 @@
             color: #6c757d;
         }
         
-        /* User Avatar */
-        .avatar {
-            width: 36px;
-            height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: 600;
-            margin-right: 12px;
+        .stats-card {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
         }
         
-        /* Action Buttons */
+        .stat-item {
+            flex: 1;
+            margin: 0 0.5rem;
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-item:first-child {
+            margin-left: 0;
+        }
+        
+        .stat-item:last-child {
+            margin-right: 0;
+        }
+        
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
         .action-buttons {
             display: flex;
-            gap: 0.8rem;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .admin-container {
-                padding: 1.5rem;
-            }
-            
-            .admin-title {
-                font-size: 1.5rem;
-            }
-            
-            .stats-card {
-                grid-template-columns: 1fr;
-            }
+            gap: 0.5rem;
         }
         
         @media (max-width: 768px) {
             .admin-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 1rem;
             }
             
             .btn-logout {
+                margin-top: 1rem;
                 align-self: flex-end;
+            }
+            
+            .stats-card {
+                flex-direction: column;
+            }
+            
+            .stat-item {
+                margin: 0.5rem 0;
             }
             
             .action-buttons {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.3rem;
             }
             
             .btn-action {
                 width: 100%;
-                justify-content: center;
-            }
-            
-            .card-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
+                text-align: center;
             }
         }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .card, .stat-item, .welcome-message {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        
-        .stat-item:nth-child(1) { animation-delay: 0.1s; }
-        .stat-item:nth-child(2) { animation-delay: 0.2s; }
-        .stat-item:nth-child(3) { animation-delay: 0.3s; }
-        .card { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -490,31 +343,28 @@
     
     <div class="stats-card">
         <div class="stat-item">
-            <i class="fas fa-users stat-icon"></i>
             <div class="stat-value">{{ users|length }}</div>
             <div class="stat-label">Usuarios Totales</div>
         </div>
         <div class="stat-item">
-            <i class="fas fa-user-check stat-icon"></i>
-            <div class="stat-value">{{ active_users }}</div>
+            <div class="stat-value">{{ users|length }}</div>
             <div class="stat-label">Usuarios Activos</div>
         </div>
         <div class="stat-item">
-            <i class="fas fa-user-clock stat-icon"></i>
-            <div class="stat-value">{{ new_today }}</div>
+            <div class="stat-value">0</div>
             <div class="stat-label">Nuevos Hoy</div>
         </div>
     </div>
     
     <div class="card">
-        <div class="card-header">
-            <span><i class="fas fa-users"></i> Lista de Usuarios</span>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="fas fa-users me-2"></i> Lista de Usuarios</span>
             <div>
                 <a href="{% url 'add_user' %}" class="btn btn-add btn-sm">
-                    <i class="fas fa-user-plus"></i> Agregar Usuario
+                    <i class="fas fa-user-plus me-1"></i> Agregar Usuario
                 </a>
-                <button class="btn btn-sm btn-refresh">
-                    <i class="fas fa-sync-alt"></i> Actualizar
+                <button class="btn btn-sm btn-light">
+                    <i class="fas fa-sync-alt me-1"></i> Actualizar
                 </button>
             </div>
         </div>
@@ -522,10 +372,8 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Usuario</th>
+                        <th>Matrícula</th>
                         <th>Tipo</th>
-                        <th>RFID</th>
-                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -533,46 +381,29 @@
                     {% for user in users %}
                     <tr>
                         <td>
-                            <div class="d-flex align-items-center">
-                                <div class="avatar bg-primary text-white">
-                                    {{ user.matricula|slice:":2"|upper }}
-                                </div>
-                                <div>
-                                    <strong>{{ user.matricula }}</strong><br>
-                                    <small class="text-muted">{% if user.email %}{{ user.email }}{% else %}Sin email{% endif %}</small>
-                                </div>
-                            </div>
+                            <i class="fas fa-user-circle me-2" style="color: #4e73df;"></i>
+                            {{ user.matricula }}
                         </td>
                         <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge badge-type 
+                                {% if user.type == 'admin' %}badge-admin
+                                {% elif user.type == 'user' %}badge-user
+                                {% else %}badge-other{% endif %}">
                                 {{ user.type }}
                             </span>
                         </td>
                         <td>
-                            {% if user.rfid %}
-                                <span class="badge bg-dark">{{ user.rfid }}</span>
-                            {% else %}
-                                <span class="badge bg-secondary">No asignado</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if user.is_active %}
-                                <span class="badge bg-success">Activo</span>
-                            {% else %}
-                                <span class="badge bg-danger">Inactivo</span>
-                            {% endif %}
-                        </td>
-                        <td>
                             <div class="action-buttons">
-                                <a href="{% url 'user_detail' user.id %}" class="btn btn-info btn-sm">
-                                    <i class="fas fa-eye"></i> Ver
-                                </a>
-                                <a href="#" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                                <a href="{% url 'delete_user' user.id %}" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i> Eliminar
-                                </a>
+                                {% if user.id %}
+                                    <a href="{% url 'user_detail' user.id %}" class="btn btn-profile btn-action">
+                                        <i class="fas fa-user"></i> Ver Perfil
+                                    </a>
+                                    <a href="{% url 'delete_user' user.id %}" class="btn btn-delete btn-action">
+                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                    </a>
+                                {% else %}
+                                    <span class="text-muted">No editable</span>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>
@@ -586,27 +417,14 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    // Animation for refresh button
-    document.querySelector('.btn-refresh').addEventListener('click', function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Actualizando';
-        setTimeout(() => {
-            this.innerHTML = '<i class="fas fa-sync-alt"></i> Actualizar';
-        }, 1500);
-    });
-    
-    // Add hover effect to table rows
-    document.querySelectorAll('.table tbody tr').forEach(row => {
-        row.addEventListener('mouseenter', () => {
-            row.style.transform = 'scale(1.01)';
-            row.style.boxShadow = '0 5px 15px rgba(0,0,0,0.05)';
-        });
-        row.addEventListener('mouseleave', () => {
-            row.style.transform = 'scale(1)';
-            row.style.boxShadow = 'none';
-        });
-    });
-</script>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
